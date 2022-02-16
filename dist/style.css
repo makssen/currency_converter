@@ -6,4 +6,88 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #a29bfe;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.converter {
+    width: 380px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.converter__title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.converter__items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.converter__input,
+.converter__select {
+    border-radius: 3px;
+    border: 1px solid #b2bec3;
+    outline: none;
+}
+
+.converter__input {
+    font-size: 18px;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.converter__select {
+    padding: 10px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.converter__labels {
+    display: flex;
+    flex-direction: column;
+}
+
+.converter__labels label {
+    margin: 5px 0px;
+    font-size: 18px;
+}
+
+.converter__datepicker {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.converter__datepicker input {
+    font-family: 'Roboto', sans-serif;
+    border-radius: 3px;
+    border: 1px solid #b2bec3;
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    outline: none;
+}
+
+.converter__datepicker input::-webkit-calendar-picker-indicator {
+    font-size: 18px;
+    background-color: #a29bfe;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
 }
