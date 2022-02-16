@@ -1,7 +1,6 @@
 const currencySelect = <HTMLSelectElement>document.querySelector('.converter__select');
 const currencyCount = <HTMLInputElement>document.querySelector('.converter__input');
 const outputBlock = <Element>document.querySelector('.converter__labels');
-const datePicker = <HTMLDataElement>document.querySelector('#date');
 
 const currency: { [key: string | number]: number } = {
     BYN: 1,
@@ -16,27 +15,30 @@ interface IFilterCurrency {
     value: string
 }
 
-const createLabel = (data: IFilterCurrency) => {
+const createLabel = (data: IFilterCurrency): Element => {
     const label = document.createElement('label');
     label.textContent = `${data.value} ${data.name}`;
     return label;
 }
 
-const calculate = () => {
+const calculate = (): void => {
     let selected: string = currencySelect.value;
     let result: IFilterCurrency[] = [];
-    let convertedToBYN: number = 0;
+    let converted: number = 0;
     let sum: number = 0;
 
     for (let key in currency) {
         if (selected !== 'BYN') {
-            convertedToBYN = +(+currencyCount.value / currency[selected]).toFixed(2);
-            sum = +convertedToBYN * currency[key];
+            converted = +(+currencyCount.value / currency[selected]).toFixed(2);
+            sum = +converted * currency[key];
         } else {
             sum = +currencyCount.value * currency[key];
         }
 
-        result.push({ name: key, value: (Math.ceil(sum * 100) / 100).toFixed(2) })
+        result.push({
+            name: key,
+            value: (Math.ceil(sum * 100) / 100).toFixed(2)
+        });
     }
 
     result = result.filter(item => item.name !== selected);
@@ -44,9 +46,16 @@ const calculate = () => {
     outputBlock.append(...result.map(createLabel));
 }
 
+const checkValue = (e: any): void => {
+    if (!Number(e.target.value)) {
+        e.target.value = e.target.value.replace(/[^\d]/g, '');
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     calculate();
-    currencySelect?.addEventListener('change', calculate);
+    currencyCount.addEventListener('input', checkValue);
     currencyCount.addEventListener('input', calculate);
+    currencySelect.addEventListener('change', calculate);
 });

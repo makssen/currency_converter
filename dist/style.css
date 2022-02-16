@@ -19,6 +19,7 @@ body {
 .converter {
     width: 380px;
     padding: 20px;
+    margin: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
@@ -47,6 +48,7 @@ body {
 }
 
 .converter__input {
+    width: 100%;
     font-size: 18px;
     padding: 10px 15px;
     margin-right: 10px;
@@ -66,28 +68,4 @@ body {
 .converter__labels label {
     margin: 5px 0px;
     font-size: 18px;
-}
-
-.converter__datepicker {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.converter__datepicker input {
-    font-family: 'Roboto', sans-serif;
-    border-radius: 3px;
-    border: 1px solid #b2bec3;
-    padding: 5px;
-    font-size: 16px;
-    margin-top: 5px;
-    outline: none;
-}
-
-.converter__datepicker input::-webkit-calendar-picker-indicator {
-    font-size: 18px;
-    background-color: #a29bfe;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
 }

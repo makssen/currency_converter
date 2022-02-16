@@ -15,7 +15,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var currencySelect = document.querySelector('.converter__select');
 var currencyCount = document.querySelector('.converter__input');
 var outputBlock = document.querySelector('.converter__labels');
-var datePicker = document.querySelector('#date');
 var currency = {
   BYN: 1,
   USD: 0.39,
@@ -33,13 +32,13 @@ var createLabel = function createLabel(data) {
 var calculate = function calculate() {
   var selected = currencySelect.value;
   var result = [];
-  var convertedToBYN = 0;
+  var converted = 0;
   var sum = 0;
 
   for (var _key in currency) {
     if (selected !== 'BYN') {
-      convertedToBYN = +(+currencyCount.value / currency[selected]).toFixed(2);
-      sum = +convertedToBYN * currency[_key];
+      converted = +(+currencyCount.value / currency[selected]).toFixed(2);
+      sum = +converted * currency[_key];
     } else {
       sum = +currencyCount.value * currency[_key];
     }
@@ -57,8 +56,15 @@ var calculate = function calculate() {
   outputBlock.append.apply(outputBlock, _toConsumableArray(result.map(createLabel)));
 };
 
+var checkValue = function checkValue(e) {
+  if (!Number(e.target.value)) {
+    e.target.value = e.target.value.replace(/[^\d]/g, '');
+  }
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   calculate();
-  currencySelect === null || currencySelect === void 0 ? void 0 : currencySelect.addEventListener('change', calculate);
+  currencyCount.addEventListener('input', checkValue);
   currencyCount.addEventListener('input', calculate);
+  currencySelect.addEventListener('change', calculate);
 });
